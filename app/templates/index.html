@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BanglaShield VAPT Console</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="flag">
+          <div class="circle"></div>
+        </div>
+        <div class="hero-text">
+          <h1>BanglaShield VAPT Console</h1>
+          <p>
+            Defensive security validation platform for target scoping, reconnaissance, and
+            professional reporting. Safe-mode is enabled by default to prevent intrusive testing.
+          </p>
+          {% if error %}
+          <div class="alert">{{ error }}</div>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="panel">
+        <form action="/scan" method="post" class="scan-form">
+          <label for="target">Target (Domain, URL, IP, or CIDR)</label>
+          <input
+            type="text"
+            id="target"
+            name="target"
+            placeholder="example.com or https://example.com"
+            required
+          />
+
+          <div class="toggle">
+            <label class="switch">
+              <input type="checkbox" name="safe_mode" checked />
+              <span class="slider"></span>
+            </label>
+            <span>Safe-mode (recommended)</span>
+          </div>
+
+          <button type="submit">Run Assessment</button>
+        </form>
+
+        <div class="note">
+          <h3>What this tool does</h3>
+          <ul>
+            <li>Validates target scope and resolves DNS/IP details.</li>
+            <li>Collects HTTP headers, TLS posture, and tech fingerprints.</li>
+            <li>Highlights common defensive gaps without offensive exploitation.</li>
+            <li>Generates professional findings with remediation guidance.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
